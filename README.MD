@@ -12,4 +12,4 @@ Diseñe y construya un conjunto de clases que permitan modelar esta situación, 
 
 
 ## Diagrama
-![Imagen de el diagram de clases](https://utmerida-my.sharepoint.com/:i:/g/personal/21090353_alumno_utmetropolitana_edu_mx/EcOg4ini5LRIuRy8mQNZEA8BWisb0ChSr8l_x0kl68OTyg?e=FGOSXk)
+![Imagen_de_el_diagram_de_clases](https://ibb.co/KmscqZS)
