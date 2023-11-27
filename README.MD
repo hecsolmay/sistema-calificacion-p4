@@ -12,4 +12,4 @@ Diseñe y construya un conjunto de clases que permitan modelar esta situación, 
 
 
 ## Diagrama
-![Imagen_de_el_diagram_de_clases](https://ibb.co/KmscqZS)
+![Imagen_de_el_diagram_de_clases](https://i.postimg.cc/Pfvg8jwQ/Diagrama-de-Clases-Problema-4.png)
