@@ -73,7 +73,6 @@ namespace problema_3.View.Pruebas
 
 
             prueba.AgregarSubPrueba(new Prueba { NotaMaxima = max });
-            // pruebaPresenter
 
             Console.WriteLine("SubPrueba Agregada");
             Console.ReadKey();
@@ -140,7 +139,8 @@ namespace problema_3.View.Pruebas
                     return;
                 }
 
-                Console.WriteLine($"La nota maxima es: {prueba.CalcularNota()}");
+                int nota = prueba.CalcularNota();
+                Console.WriteLine($"La nota maxima es: {nota}");
                 Console.ReadKey();
             }
             catch (Exception ex)
@@ -160,10 +160,30 @@ namespace problema_3.View.Pruebas
 
             Console.Write("Id: ");
             string id = Console.ReadLine() ?? "";
-            Console.Write("Id del Alumno: ");
-            string idAlumno = Console.ReadLine() ?? "";
 
-            Console.ReadKey();
+            var prueba = pruebaPresenter.ObtenerPrueba(id);
+
+            if (prueba is null)
+            {
+                Console.WriteLine("No se encontro la prueba");
+                return;
+            }
+
+            Console.Write("Nombre del Alumno: ");
+            string nombre = Console.ReadLine() ?? "";
+
+            try
+            {
+                int nota = prueba.CalcularNota(nombre);
+                Console.WriteLine($"La nota de {nombre} es de: {nota}");
+                Console.ReadKey();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.ReadKey();
+            }
+
         }
 
         public void RegistrarNotaAlumno()
@@ -176,8 +196,18 @@ namespace problema_3.View.Pruebas
 
             Console.Write("Id: ");
             string id = Console.ReadLine() ?? "";
-            Console.Write("Id del Alumno: ");
-            string idAlumno = Console.ReadLine() ?? "";
+
+            var prueba = pruebaPresenter.ObtenerPrueba(id);
+
+            if (prueba is null)
+            {
+                Console.WriteLine("No se encontro la prueba, Intentalo de nuevo");
+                Console.ReadKey();
+                return;
+            }
+
+            Console.Write("Nombre del Alumno: ");
+            string nombre = Console.ReadLine() ?? "";
             Console.Write("Nota del Alumno: ");
 
             if (!int.TryParse(Console.ReadLine(), out int nota))
@@ -187,7 +217,20 @@ namespace problema_3.View.Pruebas
                 return;
             }
 
-            Console.ReadKey();
+            try
+            {
+                pruebaPresenter.RegistrarNotaAlumno(id, nombre, nota);
+                Console.WriteLine("Calificacion registrada Presiona Enter Para Continuar");
+                Console.ReadKey();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.ReadKey();
+                return;
+            }
+
+
         }
 
         public void SelectTask()
@@ -271,7 +314,18 @@ namespace problema_3.View.Pruebas
             Console.Write("Id: ");
             string id = Console.ReadLine() ?? "";
 
-            Console.ReadKey();
+            try
+            {
+                pruebaPresenter.TerminarPrueba(id);
+                Console.WriteLine("Prueba terminada");
+                Console.ReadKey();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.ReadKey();
+            }
         }
     }
 }

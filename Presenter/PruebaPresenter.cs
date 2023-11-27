@@ -30,5 +30,29 @@ namespace problema_3.Presenter
         {
             return pruebas.FirstOrDefault(x => x.Identificador == identificador);
         }
+
+        public void RegistrarNotaAlumno(string id, string nombre, int nota) 
+        {
+            var prueba = pruebas.FirstOrDefault(x => x.Identificador == id);
+
+            if (prueba is null)
+            {
+                throw new Exception("Prueba no encontrada");
+            }
+
+            prueba.RegistrarNotaAlumno(nombre, nota);
+        }
+
+        public void TerminarPrueba (string id) 
+        {
+            var prueba = pruebas.FirstOrDefault(x => x.Identificador == id);
+
+              if (prueba is null)
+            {
+                throw new Exception("Prueba no encontrada");
+            }
+
+            prueba.TerminarPrueba();
+        }
     }
 }

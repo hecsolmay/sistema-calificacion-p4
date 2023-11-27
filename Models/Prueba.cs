@@ -23,10 +23,10 @@ namespace problema_3.Models
             }
         }
         public List<Prueba> Subpruebas { get; set; } = new List<Prueba>();
-        public Dictionary<Alumno, int> NotasAlumnos { get; set; } = new Dictionary<Alumno, int>();
+        public Dictionary<string, int> NotasAlumnos { get; set; } = new Dictionary<string, int>();
         public bool Concluida { get; set; } = false;
 
-        public void RegistrarNotaAlumno(Alumno alumno, int nota)
+        public void RegistrarNotaAlumno(string alumno, int nota)
         {
             NotasAlumnos[alumno] = nota;
         }
@@ -35,10 +35,15 @@ namespace problema_3.Models
         {
             isConcluida();
 
-            return 0;
+            if (NotasAlumnos.Count == 0) {
+                return NotaMaxima;
+            }
+
+            var media = NotasAlumnos.Sum(x => x.Value) / NotasAlumnos.Count;
+            return media;
         }
 
-        public int CalcularNota(Alumno alumno)
+        public int CalcularNota(string alumno)
         {
             isConcluida();
 
@@ -84,6 +89,11 @@ namespace problema_3.Models
             {
                 throw new Exception("La prueba no ha sido concluida");
             }
+        }
+
+        public void TerminarPrueba()
+        {
+            this.Concluida = true;
         }
 
         public void MostrarDetalles()
